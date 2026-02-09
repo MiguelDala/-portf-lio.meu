@@ -11,12 +11,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Splash Screen / Tela Inicial -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-image-container">
+                <img src="assets/profile.png" alt="Miguel Dala" class="splash-image">
+                <div class="splash-image-glow"></div>
+                
+                <!-- Tecnologias ao redor da foto -->
+                <div class="tech-orbits">
+                    <div class="tech-bubble tech-1">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="C#" class="tech-icon">
+                    </div>
+                    <div class="tech-bubble tech-2">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" alt="GitHub" class="tech-icon">
+                    </div>
+                    <div class="tech-bubble tech-3">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" class="tech-icon">
+                    </div>
+                    <div class="tech-bubble tech-4">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" class="tech-icon">
+                    </div>
+                    <div class="tech-bubble tech-5">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="tech-icon">
+                    </div>
+                    <div class="tech-bubble tech-6">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" class="tech-icon">
+                    </div>
+                    <div class="tech-bubble tech-7">
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" class="tech-icon">
+                    </div>
+                </div>
+            </div>
+            <h1 class="splash-name">Miguel Dala</h1>
+            <p class="splash-subtitle">Programador & Desenvolvedor</p>
+            <button id="enter-portfolio" class="enter-button" onclick="if(typeof showMainContent === 'function') showMainContent(); else console.log('Função showMainContent não encontrada');">
+                <span>Entrar no Portfólio</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        <div class="splash-background"></div>
+    </div>
+
+    <!-- Conteúdo Principal (oculto inicialmente) -->
+    <div id="main-content" class="main-content hidden">
     <div class="theme-toggle">
         <i class="fas fa-moon"></i>
-    </div>
-    <div class="language-switcher">
-        <button class="lang-btn active" data-lang="pt">PT</button>
-        <button class="lang-btn" data-lang="en">EN</button>
     </div>
     <header class="header">
         <nav>
@@ -75,6 +115,15 @@
                     </div>
                 </div>
                 <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024</span>
+                        <p><strong>Estágio na Universidade da Beira Interior (UBI)</strong> - Covilhã<br>
+                        Desenvolvimento de website profissional para o diretor do Departamento de Informática. 
+                        Projeto completo com design moderno, responsivo e funcionalidades avançadas.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
                     <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
                     <div class="timeline-content">
                         <span class="timeline-date">Futuro</span>
@@ -108,6 +157,69 @@
 
         <section id="projects" class="projects">
             <h2>Projetos em Destaque</h2>
+            
+            <!-- Projeto em Destaque - Website UBI -->
+            <div class="featured-project">
+                <div class="featured-project-header">
+                    <div class="featured-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Projeto em Destaque</span>
+                    </div>
+                    <h3>Website Profissional - Universidade da Beira Interior</h3>
+                    <p class="featured-subtitle">Desenvolvido durante estágio na UBI - Covilhã</p>
+                </div>
+                <div class="featured-project-content">
+                    <div class="project-preview-container">
+                        <iframe 
+                            src="https://np-lyart.vercel.app/" 
+                            class="project-preview-iframe"
+                            title="Website UBI - Nuno Pombo"
+                            loading="lazy"
+                            allow="fullscreen">
+                        </iframe>
+                        <div class="iframe-overlay">
+                            <a href="https://np-lyart.vercel.app/" target="_blank" class="view-full-site-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                                Ver Site Completo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="featured-project-info">
+                        <div class="project-details">
+                            <h4>Sobre o Projeto</h4>
+                            <p>Website profissional desenvolvido para o diretor do Departamento de Informática da Universidade da Beira Interior. 
+                            O projeto inclui design moderno, responsivo e funcionalidades avançadas para apresentação de projetos, publicações e informações acadêmicas.</p>
+                            
+                            <div class="project-tech">
+                                <h4>Tecnologias Utilizadas</h4>
+                                <div class="tech-tags">
+                                    <span class="tech-tag">HTML5</span>
+                                    <span class="tech-tag">CSS3</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">Responsive Design</span>
+                                    <span class="tech-tag">Vercel</span>
+                                </div>
+                            </div>
+                            
+                            <div class="project-features">
+                                <h4>Características</h4>
+                                <ul>
+                                    <li><i class="fas fa-check"></i> Design moderno e profissional</li>
+                                    <li><i class="fas fa-check"></i> Totalmente responsivo</li>
+                                    <li><i class="fas fa-check"></i> Seções de projetos e publicações</li>
+                                    <li><i class="fas fa-check"></i> Interface intuitiva e elegante</li>
+                                </ul>
+                            </div>
+                            
+                            <a href="https://np-lyart.vercel.app/" target="_blank" class="featured-project-button">
+                                <span>Visitar Website</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="projects-mosaic">
                 <div class="project-mosaic-item">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C/C++">
@@ -209,6 +321,7 @@
     <footer>
         <p>&copy; 2024 Miguel Dala. Escola profissional do fundão.</p>
     </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
