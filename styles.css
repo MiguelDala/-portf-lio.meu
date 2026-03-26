@@ -1624,6 +1624,34 @@ nav {
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
 }
 
+.contact-form button:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-feedback {
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    display: none;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.form-feedback-success {
+    background: rgba(72, 187, 120, 0.2);
+    color: #276749;
+    border: 1px solid rgba(72, 187, 120, 0.5);
+}
+
+.form-feedback-error {
+    background: rgba(229, 62, 62, 0.15);
+    color: #c53030;
+    border: 1px solid rgba(229, 62, 62, 0.4);
+}
+
 .social-links-vertical {
     display: flex;
     flex-direction: column;

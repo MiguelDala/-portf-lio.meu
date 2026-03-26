@@ -228,7 +228,7 @@
             <div class="projects-mosaic">
                 <div class="project-mosaic-item">
                     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C/C++">
-                    <div class="project-info">
+                    <div class="project-info">, 
                         <h3>Programação em C/C++</h3>
                         <p>Fundamentos da programação em C e C++.</p>
                         <a href="https://c-cpp-html.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
@@ -304,11 +304,17 @@
         <section id="contact" class="contact">
             <h2 class="section-title">Contato</h2>
             <div class="contact-flex">
-                <form class="contact-form">
-                    <input type="text" placeholder="Nome" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Mensagem" required></textarea>
-                    <button type="submit">Enviar</button>
+                <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                    <!-- Web3Forms: Coloque aqui a sua Access Key de https://web3forms.com (emails vão para danilomanuel040@gmail.com) -->
+                    <input type="hidden" name="access_key" value="COLOQUE_SUA_ACCESS_KEY_AQUI">
+                    <input type="hidden" name="subject" value="Nova mensagem do portfólio - Contato">
+                    <input type="hidden" name="from_name" value="Portfólio Miguel Dala">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off">
+                    <input type="text" name="name" placeholder="Nome" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Mensagem" required></textarea>
+                    <div id="formFeedback" class="form-feedback"></div>
+                    <button type="submit" id="submitBtn">Enviar</button>
                 </form>
                 <div class="social-links-vertical">
                     <a href="https://github.com/MiguelDala" class="social-button"><i class="fab fa-github"></i></a>

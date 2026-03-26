@@ -310,22 +310,61 @@ const skillsObserver = new IntersectionObserver((entries, obs) => {
 
 skillBars.forEach(bar => skillsObserver.observe(bar));
 
-// Contact form: send via mailto with prefilled subject/body
+// Contact form: Web3Forms - envia automaticamente para o Gmail (danilomanuel040@gmail.com)
+// Os dados ficam guardados no dashboard Web3Forms durante 30 dias
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const [nameInput, emailInput, messageInput] = contactForm.querySelectorAll('input, textarea');
-        const name = encodeURIComponent(nameInput.value.trim());
-        const email = encodeURIComponent(emailInput.value.trim());
-        const message = encodeURIComponent(messageInput.value.trim());
+        const submitBtn = contactForm.querySelector('#submitBtn');
+        const feedback = document.getElementById('formFeedback');
+        
+        if (!contactForm.querySelector('input[name="access_key"]')?.value || 
+            contactForm.querySelector('input[name="access_key"]').value === 'COLOQUE_SUA_ACCESS_KEY_AQUI') {
+            if (feedback) {
+                feedback.className = 'form-feedback form-feedback-error';
+                feedback.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Configure a Access Key no formulário (web3forms.com)';
+                feedback.style.display = 'block';
+            }
+            return;
+        }
 
-        const subject = `Contato via portfólio - ${name || 'Sem nome'}`;
-        const body = `Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`;
-        const recipient = 'miguel@example.com'; // ajuste para o seu email real
-        const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> A enviar...';
+        }
+        if (feedback) feedback.style.display = 'none';
 
-        window.location.href = mailtoLink;
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+
+            if (result.success) {
+                if (feedback) {
+                    feedback.className = 'form-feedback form-feedback-success';
+                    feedback.innerHTML = '<i class="fas fa-check-circle"></i> Mensagem enviada! Receberá no Gmail em breve.';
+                    feedback.style.display = 'block';
+                }
+                contactForm.reset();
+            } else {
+                throw new Error(result.message || 'Erro ao enviar');
+            }
+        } catch (err) {
+            if (feedback) {
+                feedback.className = 'form-feedback form-feedback-error';
+                feedback.innerHTML = '<i class="fas fa-times-circle"></i> ' + (err.message || 'Erro ao enviar. Tente novamente.');
+                feedback.style.display = 'block';
+            }
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Enviar';
+            }
+        }
     });
 }
 
