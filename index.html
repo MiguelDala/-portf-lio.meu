@@ -77,16 +77,39 @@
     </header>
 
     <main>
-        <section id="home" class="hero new-hero-layout">
+        <section id="home" class="hero new-hero-layout has-photo-carousel">
+            <div class="hero-bg-carousel" aria-hidden="true">
+                <div class="hero-bg-slide is-active"><img src="assets/hero-highlight-ai-vscode.png" alt="Programação, VS Code e colaboração com IA"></div>
+                <div class="hero-bg-slide"><img src="assets/hero-highlight-4.png" alt=""></div>
+                <div class="hero-bg-slide"><img src="assets/hero-highlight-5.png" alt=""></div>
+                <div class="hero-bg-slide"><img src="assets/hero-highlight-6.png" alt=""></div>
+                <div class="hero-bg-slide"><img src="assets/hero-highlight-7.png" alt=""></div>
+                <div class="hero-bg-slide"><img src="assets/hero-highlight-8.png" alt=""></div>
+                <div class="hero-bg-slide"><img src="assets/hero-highlight-sqlite.png" alt="SQLite"></div>
+                <div class="hero-bg-slide"><img src="assets/hero-highlight-python-cron.png" alt="Python — batch job e cron"></div>
+                <div class="hero-bg-slide"><img src="assets/hero-highlight-workspace.png" alt="Ambiente de trabalho"></div>
+            </div>
+            <div class="hero-bg-carousel-shade" aria-hidden="true"></div>
             <div class="hero-flex">
                 <div class="profile-image">
                     <img src="assets/profile.png" alt="Miguel Dala">
                 </div>
                 <div class="hero-content">
-                    <h1 class="highlighted-name">Miguel Dala <span class="typing-effect">| Programador</span></h1>
-                    <p>Transformando café em código e ideias em realidade... Angolano que codifica mais rápido que a internet.
-                        !</p>
+                    <h1 class="highlighted-name">Miguel Dala</h1>
+                    <p class="hero-role-line"><span class="typing-effect">| Programador</span></p>
+                    <p class="hero-lead">Transformando café em código e ideias em realidade… Angolano que codifica mais rápido que a internet!</p>
                 </div>
+            </div>
+            <div class="hero-carousel-dots" role="tablist" aria-label="Destaques do portfólio">
+                <button type="button" class="hero-carousel-dot is-active" role="tab" aria-selected="true" aria-label="Destaque 1 — IA e código"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 2"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 3"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 4"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 5"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 6"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 7 (SQLite)"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 8 (Python)"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 9 (workspace)"></button>
             </div>
         </section>
 

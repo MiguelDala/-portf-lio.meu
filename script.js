@@ -217,10 +217,11 @@ document.querySelectorAll('.project-mosaic-item, .skill-bar, .featured-project')
     observer.observe(card);
 });
 
-// Lazy-load all images except the profile image (already visible)
+// Lazy-load all images except the profile image e o carrossel do hero (precisam aparecer já)
 document.querySelectorAll('img').forEach(img => {
     const isHeroProfile = img.closest('.profile-image');
-    if (!isHeroProfile) {
+    const isHeroCarousel = img.closest('.hero-bg-carousel');
+    if (!isHeroProfile && !isHeroCarousel) {
         img.setAttribute('loading', 'lazy');
         
         // Add loaded class when image loads
@@ -558,26 +559,6 @@ document.querySelectorAll('.project-mosaic-item, .timeline-content, .featured-pr
     });
 });
 
-// Add parallax effect to hero content
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
-    
-    const heroContent = document.querySelector('.hero-content');
-    const profileImage = document.querySelector('.profile-image');
-    
-    if (heroContent) {
-        heroContent.style.transform = `translate(${mouseX * 0.3}px, ${mouseY * 0.3}px)`;
-    }
-    
-    if (profileImage) {
-        profileImage.style.transform = `translate(${-mouseX * 0.2}px, ${-mouseY * 0.2}px)`;
-    }
-});
-
 // Add glow effect on scroll for sections
 const sectionGlowObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -677,3 +658,64 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Carrossel automático de destaques no hero (fotos em assets/hero-highlight-*.png)
+function initHeroPhotoCarousel() {
+    const hero = document.querySelector('.hero.new-hero-layout.has-photo-carousel');
+    if (!hero || hero.dataset.carouselInit === '1') return;
+    hero.dataset.carouselInit = '1';
+
+    const slides = hero.querySelectorAll('.hero-bg-slide');
+    const dots = hero.querySelectorAll('.hero-carousel-dot');
+    if (!slides.length) return;
+
+    let index = 0;
+    const intervalMs = 3000;
+    let timer;
+
+    function goTo(n) {
+        slides[index].classList.remove('is-active');
+        if (dots[index]) {
+            dots[index].classList.remove('is-active');
+            dots[index].setAttribute('aria-selected', 'false');
+        }
+        index = ((n % slides.length) + slides.length) % slides.length;
+        slides[index].classList.add('is-active');
+        if (dots[index]) {
+            dots[index].classList.add('is-active');
+            dots[index].setAttribute('aria-selected', 'true');
+        }
+    }
+
+    function next() {
+        goTo(index + 1);
+    }
+
+    function start() {
+        clearInterval(timer);
+        timer = setInterval(next, intervalMs);
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            goTo(i);
+            start();
+        });
+    });
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+        start();
+    }
+
+    hero.addEventListener('mouseenter', () => clearInterval(timer));
+    hero.addEventListener('mouseleave', () => {
+        if (!reduceMotion) start();
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroPhotoCarousel);
+} else {
+    initHeroPhotoCarousel();
+}
