@@ -4,359 +4,489 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miguel Dala - Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Splash Screen / Tela Inicial -->
+
+    <!-- ==========================================
+         MARQUEE BANNER
+         ========================================== -->
+    <div class="win-marquee-bar">
+        <marquee>&#9733; Bem-vindo ao Portfolio de Miguel Dala &#9733; &nbsp;&nbsp;&nbsp; Programador &amp; Desenvolvedor &nbsp;&nbsp;&nbsp; &#9733; Angolano que codifica mais r&aacute;pido que a internet! &#9733; &nbsp;&nbsp;&nbsp; Construido com HTML, CSS &amp; JavaScript &nbsp;&nbsp;&nbsp; &#9733; &copy; 2024 Miguel Dala &#9733;</marquee>
+    </div>
+
+    <!-- ==========================================
+         SPLASH SCREEN — Windows 2000 Login
+         ========================================== -->
     <div id="splash-screen" class="splash-screen">
-        <div class="splash-content">
-            <div class="splash-image-container">
-                <img src="assets/profile.png" alt="Miguel Dala" class="splash-image">
-                <div class="splash-image-glow"></div>
-                
-                <!-- Tecnologias ao redor da foto -->
-                <div class="tech-orbits">
-                    <div class="tech-bubble tech-1">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="C#" class="tech-icon">
-                    </div>
-                    <div class="tech-bubble tech-2">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" alt="GitHub" class="tech-icon">
-                    </div>
-                    <div class="tech-bubble tech-3">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" class="tech-icon">
-                    </div>
-                    <div class="tech-bubble tech-4">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" class="tech-icon">
-                    </div>
-                    <div class="tech-bubble tech-5">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="tech-icon">
-                    </div>
-                    <div class="tech-bubble tech-6">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" class="tech-icon">
-                    </div>
-                    <div class="tech-bubble tech-7">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" class="tech-icon">
-                    </div>
+        <div class="splash-window">
+            <!-- Title bar -->
+            <div class="splash-titlebar">
+                <div class="splash-titlebar-title">
+                    <span class="splash-titlebar-icon" aria-hidden="true">&#128196;</span>
+                    Entrar no Portf&oacute;lio — Miguel Dala
+                </div>
+                <div class="splash-titlebar-btns">
+                    <button aria-label="Minimizar" title="Minimizar">_</button>
+                    <button aria-label="Maximizar" title="Maximizar">&#9633;</button>
+                    <button aria-label="Fechar" title="Fechar" style="color:#cc0000;font-weight:bold;">&#x2715;</button>
                 </div>
             </div>
-            <h1 class="splash-name">Miguel Dala</h1>
-            <p class="splash-subtitle">Programador & Desenvolvedor</p>
-            <button id="enter-portfolio" class="enter-button" onclick="if(typeof showMainContent === 'function') showMainContent(); else console.log('Função showMainContent não encontrada');">
-                <span>Entrar no Portfólio</span>
-                <i class="fas fa-arrow-right"></i>
-            </button>
+            <!-- Window body -->
+            <div class="splash-body">
+                <div class="splash-image-container">
+                    <img src="assets/profile.png" alt="Miguel Dala" class="splash-image">
+                </div>
+                <h1 class="splash-name">Miguel Dala</h1>
+                <p class="splash-subtitle">Programador &amp; Desenvolvedor</p>
+                <hr class="win-hr" style="width:100%;">
+                <button id="enter-portfolio" class="enter-button" onclick="if(typeof showMainContent === 'function') showMainContent();">
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <span>Entrar no Portf&oacute;lio</span>
+                </button>
+            </div>
         </div>
-        <div class="splash-background"></div>
     </div>
 
-    <!-- Conteúdo Principal (oculto inicialmente) -->
+    <!-- ==========================================
+         MAIN CONTENT
+         ========================================== -->
     <div id="main-content" class="main-content hidden">
-    <div class="theme-toggle">
-        <i class="fas fa-moon"></i>
-    </div>
-    <header class="header">
-        <nav>
-            <div class="logo">MD</div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#skills">Habilidades</a></li>
-                <li><a href="#projects">Projetos</a></li>
-                <li><a href="#contact">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section id="home" class="hero new-hero-layout has-photo-carousel">
-            <div class="hero-bg-carousel" aria-hidden="true">
-                <div class="hero-bg-slide is-active"><img src="assets/hero-highlight-ai-vscode.png" alt="Programação, VS Code e colaboração com IA"></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-4.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-5.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-6.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-7.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-8.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-sqlite.png" alt="SQLite"></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-python-cron.png" alt="Python — batch job e cron"></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-workspace.png" alt="Ambiente de trabalho"></div>
-            </div>
-            <div class="hero-bg-carousel-shade" aria-hidden="true"></div>
-            <div class="hero-flex">
-                <div class="profile-image">
-                    <img src="assets/profile.png" alt="Miguel Dala">
-                </div>
-                <div class="hero-content">
-                    <h1 class="highlighted-name">Miguel Dala</h1>
-                    <p class="hero-role-line"><span class="typing-effect">| Programador</span></p>
-                    <p class="hero-lead">Transformando café em código e ideias em realidade… Angolano que codifica mais rápido que a internet!</p>
-                </div>
-            </div>
-            <div class="hero-carousel-dots" role="tablist" aria-label="Destaques do portfólio">
-                <button type="button" class="hero-carousel-dot is-active" role="tab" aria-selected="true" aria-label="Destaque 1 — IA e código"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 2"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 3"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 4"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 5"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 6"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 7 (SQLite)"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 8 (Python)"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 9 (workspace)"></button>
-            </div>
-        </section>
+        <!-- HEADER / NAV -->
+        <header class="header">
+            <nav aria-label="Navega&ccedil;&atilde;o principal">
+                <div class="logo">MD</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#skills">Habilidades</a></li>
+                    <li><a href="#projects">Projetos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <section id="about" class="about timeline-section">
-            <h2>Minha Jornada</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-school"></i></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2024</span>
-                        <p>Início dos estudos na Escola Profissional do Fundão</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-laptop-code"></i></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2024</span>
-                        <p>Primeiros projetos em programação e desenvolvimento de software</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2024-2026</span>
-                        <p><strong>Estágio na Universidade da Beira Interior (UBI)</strong> - Covilhã<br>
-                        Desenvolvimento de website profissional para o Professor Nuno Pombo do Departamento de Informática. 
-                        Projeto completo com design moderno, responsivo e funcionalidades avançadas.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Futuro</span>
-                        <p>Buscando sempre evoluir e inovar na área de tecnologia!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <main>
 
-        <section id="skills" class="skills">
-            <h2 class="section-title">Minhas Skills</h2>
-            <div class="skills-bars">
-                <div class="skill-bar">
-                    <span>HTML5</span>
-                    <div class="bar"><div class="bar-fill html"></div></div>
+            <!-- ==========================================
+                 HERO SECTION
+                 ========================================== -->
+            <section id="home" class="hero new-hero-layout has-photo-carousel">
+                <!-- "Under Construction" IE info bar -->
+                <div class="hero-win-banner" role="note">
+                    <span>&#9888;</span>
+                    <span><strong>Bem-vindo!</strong> Este site disp&otilde;e de conte&uacute;do interativo.</span>
                 </div>
-                <div class="skill-bar">
-                    <span>CSS</span>
-                    <div class="bar"><div class="bar-fill css"></div></div>
-                </div>
-                <div class="skill-bar">
-                    <span>SQL</span>
-                    <div class="bar"><div class="bar-fill sql"></div></div>
-                </div>
-                <div class="skill-bar">
-                    <span>C++</span>
-                    <div class="bar"><div class="bar-fill cpp"></div></div>
-                </div>
-                <div class="skill-bar">
-                    <span>Python</span>
-                    <div class="bar"><div class="bar-fill python"></div></div>
-                </div>
-                <div class="skill-bar">
-                    <span>Java</span>
-                    <div class="bar"><div class="bar-fill java"></div></div>
-                </div>
-                <div class="skill-bar">
-                    <span>PHP</span>
-                    <div class="bar"><div class="bar-fill php"></div></div>
-                </div>
-            </div>
-        </section>
 
-        <section id="projects" class="projects">
-            <h2>Projetos em Destaque</h2>
-            
-            <!-- Projeto em Destaque - Website UBI -->
-            <div class="featured-project">
-                <div class="featured-project-header">
-                    <div class="featured-badge">
-                        <i class="fas fa-star"></i>
-                        <span>Projeto em Destaque</span>
-                    </div>
-                    <h3>Website Profissional - Professor Nuno Pombo</h3>
-                    <p class="featured-subtitle">Desenvolvido durante estágio na UBI (2024-2026) - Covilhã</p>
-                </div>
-                <div class="featured-project-content">
-                    <div class="project-preview-container">
-                        <iframe 
-                            src="https://np-lyart.vercel.app/" 
-                            class="project-preview-iframe"
-                            title="Website UBI - Nuno Pombo"
-                            loading="lazy"
-                            allow="fullscreen">
-                        </iframe>
-                        <div class="iframe-overlay">
-                            <a href="https://np-lyart.vercel.app/" target="_blank" class="view-full-site-btn">
-                                <i class="fas fa-external-link-alt"></i>
-                                Ver Site Completo
-                            </a>
+                <!-- Window chrome -->
+                <div class="win-window" style="margin-top:8px;">
+                    <div class="win-titlebar">
+                        <div class="win-titlebar-left">
+                            <span class="win-titlebar-icon" aria-hidden="true">&#128100;</span>
+                            Miguel Dala — Programador &amp; Desenvolvedor
+                        </div>
+                        <div class="win-titlebar-controls">
+                            <span class="win-ctrl-btn" title="Minimizar" aria-hidden="true">_</span>
+                            <span class="win-ctrl-btn" title="Maximizar" aria-hidden="true">&#9633;</span>
+                            <span class="win-ctrl-btn close" title="Fechar" aria-hidden="true">&#x2715;</span>
                         </div>
                     </div>
-                    <div class="featured-project-info">
-                        <div class="project-details">
-                            <h4>Sobre o Projeto</h4>
-                            <p>Website profissional desenvolvido para o Professor Nuno Pombo do Departamento de Informática da Universidade da Beira Interior. 
-                            O projeto inclui design moderno, responsivo e funcionalidades avançadas para apresentação de projetos, publicações e informações acadêmicas.</p>
-                            
-                            <div class="project-tech">
-                                <h4>Tecnologias Utilizadas</h4>
-                                <div class="tech-tags">
-                                    <span class="tech-tag">HTML5</span>
-                                    <span class="tech-tag">CSS3</span>
-                                    <span class="tech-tag">JavaScript</span>
-                                    <span class="tech-tag">Responsive Design</span>
-                                    <span class="tech-tag">Vercel</span>
+                    <div class="win-window-body">
+                        <div class="hero-window-inner">
+                            <div class="hero-flex">
+                                <div class="profile-image">
+                                    <img src="assets/profile.png" alt="Miguel Dala">
+                                </div>
+                                <div class="hero-content">
+                                    <h1 class="highlighted-name">Miguel Dala</h1>
+                                    <p class="hero-role-line"><span class="typing-effect">| Programador</span></p>
+                                    <p class="hero-lead">Transformando caf&eacute; em c&oacute;digo e ideias em realidade&hellip; Angolano que codifica mais r&aacute;pido que a internet!</p>
+                                    <hr class="win-hr" style="margin-top:8px;">
+                                    <p style="font-size:10px;color:var(--win-gray-dark);margin-top:4px;">
+                                        &#9679; Escola Profissional do Fund&atilde;o &nbsp;|&nbsp; &#9679; Est&aacute;gio UBI — Covilh&atilde;
+                                    </p>
                                 </div>
                             </div>
-                            
-                            <div class="project-features">
-                                <h4>Características</h4>
-                                <ul>
-                                    <li><i class="fas fa-check"></i> Design moderno e profissional</li>
-                                    <li><i class="fas fa-check"></i> Totalmente responsivo</li>
-                                    <li><i class="fas fa-check"></i> Seções de projetos e publicações</li>
-                                    <li><i class="fas fa-check"></i> Interface intuitiva e elegante</li>
-                                </ul>
-                            </div>
-                            
-                            <a href="https://np-lyart.vercel.app/" target="_blank" class="featured-project-button">
-                                <span>Visitar Website</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="projects-mosaic">
-                <div class="project-mosaic-item">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C/C++">
-                    <div class="project-info">, 
-                        <h3>Programação em C/C++</h3>
-                        <p>Fundamentos da programação em C e C++.</p>
-                        <a href="https://c-cpp-html.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
+                    <div class="win-statusbar">
+                        <div class="win-statusbar-pane">&#9679; Online</div>
+                        <div class="win-statusbar-pane">Miguel Dala — Portfolio v1.0</div>
+                        <div class="win-statusbar-pane">Angola &#127990;</div>
                     </div>
                 </div>
-                <div class="project-mosaic-item">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML">
-                    <div class="project-info">
-                        <h3>Princípios Metodológicos</h3>
-                        <p>Metodologia Ágil e POO.</p>
-                        <a href="https://da-programcao-html.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="project-mosaic-item">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Metodologias">
-                    <div class="project-info">
-                        <h3>Metodologias de Desenvolvimento de Software</h3>
-                        <p>Cascata, Scrum, Kanban e XP.</p>
-                        <a href="https://mds-html.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="project-mosaic-item">
-                    <img src="https://th.bing.com/th/id/OIP.8x2R2EMnstRo8m53fPhl1gHaEK?w=300&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="IA e Quântica">
-                    <div class="project-info">
-                        <h3>O Universo Digital - IA</h3>
-                        <p>Computação quântica e inteligência artificial.</p>
-                        <a href="https://universo-html.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="project-mosaic-item">
-                    <img src="https://th.bing.com/th/id/OIP.bKD2jnMVZp7l8p-pO9vQawHaEK?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" alt="Scrum">
-                    <div class="project-info">
-                        <h3>Projeto Scrum</h3>
-                        <p>Guia completo sobre a metodologia Scrum.</p>
-                        <a href="https://pjt-scrum.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="project-mosaic-item">
-                    <img src="https://th.bing.com/th/id/OIP.o9LInF51nRy2_t4VVGigCQHaFq?w=886&h=678&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" alt="Periféricos & Algoritmos">
-                    <div class="project-info">
-                        <h3>Periféricos & Algoritmos</h3>
-                        <p>Periféricos, algoritmos e módulos do curso.</p>
-                        <a href="https://perifericos-ruby.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="project-mosaic-item">
-                    <img src="https://www.founderjar.com/wp-content/uploads/2022/07/System-Software.jpeg" alt="Utilitários">
-                    <div class="project-info">
-                        <h3>Utilitários</h3>
-                        <p>Utilitários essenciais para sistemas computacionais.</p>
-                        <a href="https://utilitarios-henna.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="project-mosaic-item">
-                    <img src="https://www.udacity.com/blog/wp-content/uploads/2020/11/Hello-World_Blog-scaled.jpeg" alt="Hello World & Algoritmos">
-                    <div class="project-info">
-                        <h3>Hello World & Algoritmos</h3>
-                        <p>Algoritmos, programação em C/C++ e módulos do curso.</p>
-                        <a href="https://hello-world-smoky-psi.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
-                    </div>
-                </div>
-                <div class="project-mosaic-item">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="SQL">
-                    <div class="project-info">
-                        <h3>Fundamentos de SQL</h3>
-                        <p>Guia completo sobre SQL, DDL, DML, DQL, DCL, TCL e JOINs.</p>
-                        <a href="https://sql-fundacao.vercel.app/" class="project-button" target="_blank">Ver Projeto</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="contact" class="contact">
-            <h2 class="section-title">Contato</h2>
-            <div class="contact-flex">
-                <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                    <!-- Web3Forms: Coloque aqui a sua Access Key de https://web3forms.com (emails vão para danilomanuel040@gmail.com) -->
-                    <input type="hidden" name="access_key" value="COLOQUE_SUA_ACCESS_KEY_AQUI">
-                    <input type="hidden" name="subject" value="Nova mensagem do portfólio - Contato">
-                    <input type="hidden" name="from_name" value="Portfólio Miguel Dala">
-                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off">
-                    <input type="text" name="name" placeholder="Nome" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="message" placeholder="Mensagem" required></textarea>
-                    <div id="formFeedback" class="form-feedback"></div>
-                    <button type="submit" id="submitBtn">Enviar</button>
-                </form>
-                <div class="social-links-vertical">
-                    <a href="https://github.com/MiguelDala" class="social-button"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/miguel_dala23/" class="social-button"><i class="fab fa-instagram"></i></a>
-                    <a href="tel:+351963275607" class="social-button"><i class="fas fa-phone"></i></a>
+            <!-- ==========================================
+                 ABOUT / TIMELINE
+                 ========================================== -->
+            <section id="about" class="about timeline-section">
+                <div class="win-window">
+                    <div class="win-titlebar">
+                        <div class="win-titlebar-left">
+                            <span class="win-titlebar-icon" aria-hidden="true">&#128336;</span>
+                            Minha Jornada
+                        </div>
+                        <div class="win-titlebar-controls">
+                            <span class="win-ctrl-btn" aria-hidden="true">_</span>
+                            <span class="win-ctrl-btn" aria-hidden="true">&#9633;</span>
+                            <span class="win-ctrl-btn close" aria-hidden="true">&#x2715;</span>
+                        </div>
+                    </div>
+                    <div class="win-window-body">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-school" aria-hidden="true"></i></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">2024</span>
+                                    <p>In&iacute;cio dos estudos na Escola Profissional do Fund&atilde;o</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-laptop-code" aria-hidden="true"></i></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">2024</span>
+                                    <p>Primeiros projetos em programa&ccedil;&atilde;o e desenvolvimento de software</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">2024&ndash;2026</span>
+                                    <p><strong>Est&aacute;gio na Universidade da Beira Interior (UBI)</strong> &mdash; Covilh&atilde;<br>
+                                    Desenvolvimento de website profissional para o Professor Nuno Pombo do Departamento de Inform&aacute;tica.
+                                    Projeto completo com design moderno, responsivo e funcionalidades avan&ccedil;adas.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-icon"><i class="fas fa-rocket" aria-hidden="true"></i></div>
+                                <div class="timeline-content">
+                                    <span class="timeline-date">Futuro</span>
+                                    <p>Buscando sempre evoluir e inovar na &aacute;rea de tecnologia!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="win-statusbar">
+                        <div class="win-statusbar-pane">4 itens</div>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <button id="back-to-top" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+            <!-- ==========================================
+                 SKILLS
+                 ========================================== -->
+            <section id="skills" class="skills">
+                <div class="win-window">
+                    <div class="win-titlebar">
+                        <div class="win-titlebar-left">
+                            <span class="win-titlebar-icon" aria-hidden="true">&#128295;</span>
+                            Minhas Skills
+                        </div>
+                        <div class="win-titlebar-controls">
+                            <span class="win-ctrl-btn" aria-hidden="true">_</span>
+                            <span class="win-ctrl-btn" aria-hidden="true">&#9633;</span>
+                            <span class="win-ctrl-btn close" aria-hidden="true">&#x2715;</span>
+                        </div>
+                    </div>
+                    <div class="win-window-body">
+                        <div class="skills-bars">
+                            <div class="skill-bar">
+                                <span>HTML5</span>
+                                <div class="bar"><div class="bar-fill html"></div></div>
+                                <span class="skill-bar-pct">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span>CSS</span>
+                                <div class="bar"><div class="bar-fill css"></div></div>
+                                <span class="skill-bar-pct">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span>SQL</span>
+                                <div class="bar"><div class="bar-fill sql"></div></div>
+                                <span class="skill-bar-pct">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span>C++</span>
+                                <div class="bar"><div class="bar-fill cpp"></div></div>
+                                <span class="skill-bar-pct">60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span>Python</span>
+                                <div class="bar"><div class="bar-fill python"></div></div>
+                                <span class="skill-bar-pct">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span>Java</span>
+                                <div class="bar"><div class="bar-fill java"></div></div>
+                                <span class="skill-bar-pct">55%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <span>PHP</span>
+                                <div class="bar"><div class="bar-fill php"></div></div>
+                                <span class="skill-bar-pct">50%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="win-statusbar">
+                        <div class="win-statusbar-pane">7 habilidades</div>
+                    </div>
+                </div>
+            </section>
 
-    <footer>
-        <p>&copy; 2024 Miguel Dala. Escola profissional do fundão.</p>
-    </footer>
-    </div>
+            <!-- ==========================================
+                 PROJECTS
+                 ========================================== -->
+            <section id="projects" class="projects">
+                <div class="win-window">
+                    <div class="win-titlebar">
+                        <div class="win-titlebar-left">
+                            <span class="win-titlebar-icon" aria-hidden="true">&#128193;</span>
+                            Projetos em Destaque
+                        </div>
+                        <div class="win-titlebar-controls">
+                            <span class="win-ctrl-btn" aria-hidden="true">_</span>
+                            <span class="win-ctrl-btn" aria-hidden="true">&#9633;</span>
+                            <span class="win-ctrl-btn close" aria-hidden="true">&#x2715;</span>
+                        </div>
+                    </div>
+                    <div class="win-window-body">
+
+                        <!-- Featured Project -->
+                        <div class="featured-project" aria-label="Projeto em destaque">
+                            <div class="featured-project-header">
+                                <div class="featured-badge">
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <span>Projeto em Destaque</span>
+                                </div>
+                                <h3>Website Profissional &mdash; Professor Nuno Pombo</h3>
+                                <p class="featured-subtitle">Desenvolvido durante est&aacute;gio na UBI (2024&ndash;2026) &mdash; Covilh&atilde;</p>
+                            </div>
+                            <div class="featured-project-content">
+                                <div class="project-preview-container">
+                                    <iframe
+                                        src="https://np-lyart.vercel.app/"
+                                        class="project-preview-iframe"
+                                        title="Website UBI - Nuno Pombo"
+                                        loading="lazy"
+                                        allow="fullscreen">
+                                    </iframe>
+                                    <div class="iframe-overlay">
+                                        <a href="https://np-lyart.vercel.app/" target="_blank" class="view-full-site-btn" rel="noopener noreferrer">
+                                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                            Ver Site Completo
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="featured-project-info">
+                                    <div class="project-details">
+                                        <h4>Sobre o Projeto</h4>
+                                        <p>Website profissional desenvolvido para o Professor Nuno Pombo do Departamento de Inform&aacute;tica da Universidade da Beira Interior.
+                                        O projeto inclui design moderno, responsivo e funcionalidades avan&ccedil;adas para apresenta&ccedil;&atilde;o de projetos, publica&ccedil;&otilde;es e informa&ccedil;&otilde;es acad&ecirc;micas.</p>
+
+                                        <div class="project-tech">
+                                            <h4>Tecnologias Utilizadas</h4>
+                                            <div class="tech-tags">
+                                                <span class="tech-tag">HTML5</span>
+                                                <span class="tech-tag">CSS3</span>
+                                                <span class="tech-tag">JavaScript</span>
+                                                <span class="tech-tag">Responsive Design</span>
+                                                <span class="tech-tag">Vercel</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="project-features">
+                                            <h4>Caracter&iacute;sticas</h4>
+                                            <ul>
+                                                <li><i class="fas fa-check" aria-hidden="true"></i> Design moderno e profissional</li>
+                                                <li><i class="fas fa-check" aria-hidden="true"></i> Totalmente responsivo</li>
+                                                <li><i class="fas fa-check" aria-hidden="true"></i> Se&ccedil;&otilde;es de projetos e publica&ccedil;&otilde;es</li>
+                                                <li><i class="fas fa-check" aria-hidden="true"></i> Interface intuitiva e elegante</li>
+                                            </ul>
+                                        </div>
+
+                                        <a href="https://np-lyart.vercel.app/" target="_blank" class="featured-project-button" rel="noopener noreferrer">
+                                            <span>Visitar Website</span>
+                                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Projects mosaic -->
+                        <div class="projects-mosaic">
+                            <div class="project-mosaic-item">
+                                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C/C++ icon" loading="lazy">
+                                <div class="project-info">
+                                    <h3>Programa&ccedil;&atilde;o em C/C++</h3>
+                                    <p>Fundamentos da programa&ccedil;&atilde;o em C e C++.</p>
+                                    <a href="https://c-cpp-html.vercel.app/" class="project-button" target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                                </div>
+                            </div>
+                            <div class="project-mosaic-item">
+                                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5 icon" loading="lazy">
+                                <div class="project-info">
+                                    <h3>Princ&iacute;pios Metodol&oacute;gicos</h3>
+                                    <p>Metodologia &Aacute;gil e POO.</p>
+                                    <a href="https://da-programcao-html.vercel.app/" class="project-button" target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                                </div>
+                            </div>
+                            <div class="project-mosaic-item">
+                                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git icon" loading="lazy">
+                                <div class="project-info">
+                                    <h3>Metodologias de Desenvolvimento</h3>
+                                    <p>Cascata, Scrum, Kanban e XP.</p>
+                                    <a href="https://mds-html.vercel.app/" class="project-button" target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                                </div>
+                            </div>
+                            <div class="project-mosaic-item">
+                                <img src="https://th.bing.com/th/id/OIP.8x2R2EMnstRo8m53fPhl1gHaEK?w=300&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="IA e Qu&acirc;ntica" loading="lazy">
+                                <div class="project-info">
+                                    <h3>O Universo Digital &mdash; IA</h3>
+                                    <p>Computa&ccedil;&atilde;o qu&acirc;ntica e intelig&ecirc;ncia artificial.</p>
+                                    <a href="https://universo-html.vercel.app/" class="project-button" target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                                </div>
+                            </div>
+                            <div class="project-mosaic-item">
+                                <img src="https://th.bing.com/th/id/OIP.bKD2jnMVZp7l8p-pO9vQawHaEK?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" alt="Scrum" loading="lazy">
+                                <div class="project-info">
+                                    <h3>Projeto Scrum</h3>
+                                    <p>Guia completo sobre a metodologia Scrum.</p>
+                                    <a href="https://pjt-scrum.vercel.app/" class="project-button" target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                                </div>
+                            </div>
+                            <div class="project-mosaic-item">
+                                <img src="https://th.bing.com/th/id/OIP.o9LInF51nRy2_t4VVGigCQHaFq?w=886&h=678&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" alt="Perif&eacute;ricos e Algoritmos" loading="lazy">
+                                <div class="project-info">
+                                    <h3>Perif&eacute;ricos &amp; Algoritmos</h3>
+                                    <p>Perif&eacute;ricos, algoritmos e m&oacute;dulos do curso.</p>
+                                    <a href="https://perifericos-ruby.vercel.app/" class="project-button" target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                                </div>
+                            </div>
+                            <div class="project-mosaic-item">
+                                <img src="https://www.founderjar.com/wp-content/uploads/2022/07/System-Software.jpeg" alt="Utilit&aacute;rios" loading="lazy">
+                                <div class="project-info">
+                                    <h3>Utilit&aacute;rios</h3>
+                                    <p>Utilit&aacute;rios essenciais para sistemas computacionais.</p>
+                                    <a href="https://utilitarios-henna.vercel.app/" class="project-button" target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                                </div>
+                            </div>
+                            <div class="project-mosaic-item">
+                                <img src="https://www.udacity.com/blog/wp-content/uploads/2020/11/Hello-World_Blog-scaled.jpeg" alt="Hello World e Algoritmos" loading="lazy">
+                                <div class="project-info">
+                                    <h3>Hello World &amp; Algoritmos</h3>
+                                    <p>Algoritmos, programa&ccedil;&atilde;o em C/C++ e m&oacute;dulos do curso.</p>
+                                    <a href="https://hello-world-smoky-psi.vercel.app/" class="project-button" target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                                </div>
+                            </div>
+                            <div class="project-mosaic-item">
+                                <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="SQL icon" loading="lazy">
+                                <div class="project-info">
+                                    <h3>Fundamentos de SQL</h3>
+                                    <p>Guia completo sobre SQL, DDL, DML, DQL, DCL, TCL e JOINs.</p>
+                                    <a href="https://sql-fundacao.vercel.app/" class="project-button" target="_blank" rel="noopener noreferrer">Ver Projeto</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="win-statusbar">
+                        <div class="win-statusbar-pane">10 projetos</div>
+                        <div class="win-statusbar-pane">&#9679; Todos online</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 CONTACT
+                 ========================================== -->
+            <section id="contact" class="contact">
+                <div class="win-window">
+                    <div class="win-titlebar">
+                        <div class="win-titlebar-left">
+                            <span class="win-titlebar-icon" aria-hidden="true">&#128233;</span>
+                            Contato
+                        </div>
+                        <div class="win-titlebar-controls">
+                            <span class="win-ctrl-btn" aria-hidden="true">_</span>
+                            <span class="win-ctrl-btn" aria-hidden="true">&#9633;</span>
+                            <span class="win-ctrl-btn close" aria-hidden="true">&#x2715;</span>
+                        </div>
+                    </div>
+                    <div class="win-window-body">
+                        <div class="contact-flex">
+                            <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                                <input type="hidden" name="access_key" value="COLOQUE_SUA_ACCESS_KEY_AQUI">
+                                <input type="hidden" name="subject" value="Nova mensagem do portf&oacute;lio - Contato">
+                                <input type="hidden" name="from_name" value="Portf&oacute;lio Miguel Dala">
+                                <input type="checkbox" name="botcheck" class="hidden" style="display:none;" tabindex="-1" autocomplete="off">
+                                <input type="text" name="name" placeholder="Nome" required aria-label="Nome">
+                                <input type="email" name="email" placeholder="Email" required aria-label="Email">
+                                <textarea name="message" placeholder="Mensagem" required aria-label="Mensagem"></textarea>
+                                <div id="formFeedback" class="form-feedback" role="alert"></div>
+                                <button type="submit" id="submitBtn">Enviar</button>
+                            </form>
+                            <div class="social-links-vertical" aria-label="Redes sociais">
+                                <a href="https://github.com/MiguelDala" class="social-button" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i></a>
+                                <a href="https://www.instagram.com/miguel_dala23/" class="social-button" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                                <a href="tel:+351963275607" class="social-button" aria-label="Telefone"><i class="fas fa-phone" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="win-statusbar">
+                        <div class="win-statusbar-pane">&#9993; danilomanuel040@gmail.com</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Back to top button -->
+        <button id="back-to-top" class="back-to-top" aria-label="Voltar ao topo">
+            <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        </button>
+
+        <!-- Footer — status bar style -->
+        <footer>
+            <p>&copy; 2024 Miguel Dala. Escola profissional do fund&atilde;o.</p>
+        </footer>
+
+    </div><!-- /#main-content -->
+
+    <!-- ==========================================
+         TASKBAR (Windows 2000)
+         ========================================== -->
+    <nav class="win-taskbar" aria-label="Barra de tarefas">
+        <button class="win-start-btn" aria-label="In&iacute;cio">
+            <span class="win-start-logo" aria-hidden="true"></span>
+            In&iacute;cio
+        </button>
+        <div class="win-taskbar-divider" aria-hidden="true"></div>
+        <div class="win-taskbar-items">
+            <a href="#home"     class="win-taskbar-item">&#128100; Home</a>
+            <a href="#about"    class="win-taskbar-item">&#128336; Jornada</a>
+            <a href="#skills"   class="win-taskbar-item">&#128295; Skills</a>
+            <a href="#projects" class="win-taskbar-item">&#128193; Projetos</a>
+            <a href="#contact"  class="win-taskbar-item">&#128233; Contato</a>
+        </div>
+        <div class="win-clock" id="win-clock" aria-live="polite">00:00</div>
+    </nav>
 
     <script src="script.js"></script>
+    <script>
+        // Taskbar clock
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const clock = document.getElementById('win-clock');
+            if (clock) clock.textContent = h + ':' + m;
+        }
+        updateClock();
+        setInterval(updateClock, 10000);
+    </script>
+
 </body>
 </html>

@@ -376,15 +376,8 @@ if (footerText) {
     footerText.innerHTML = footerText.innerHTML.replace(/\b20\d{2}\b|\b19\d{2}\b/, String(currentYear));
 }
 
-// Add parallax effect to hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero.new-hero-layout');
-    if (hero && scrolled < window.innerHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
-    }
-});
+// Parallax effect disabled for Win2000 style
+// window.addEventListener('scroll', () => { ... });
 
 // Add ripple effect to buttons
 document.querySelectorAll('.project-button, .contact-form button, .social-button').forEach(button => {
@@ -538,26 +531,7 @@ if (document.readyState === 'loading') {
 // ENHANCED INTERACTIVE EFFECTS
 // ========================================
 
-// Add magnetic effect to cards
-document.querySelectorAll('.project-mosaic-item, .timeline-content, .featured-project').forEach(card => {
-    card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const moveX = (x - centerX) / 10;
-        const moveY = (y - centerY) / 10;
-        
-        this.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = '';
-    });
-});
+// Magnetic effect disabled for Win2000 style
 
 // Add glow effect on scroll for sections
 const sectionGlowObserver = new IntersectionObserver((entries) => {
