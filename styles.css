@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}d
+}
 
 html {
     scroll-behavior: smooth;
@@ -140,38 +140,38 @@ html {
     top: -30px;
     left: 50%;
     transform: translateX(-50%);
-    animation: techFloatTop 4s ease-in-out infinite 0s, fadeInUp 0.8s ease-out 1.2s both;
+    animation: techFloatTop 4s ease-in-out infinite 0s, fadeInUp 0.4s ease-out 0.4s both;
 }
 
 .tech-2 {
     top: 20%;
     right: -30px;
-    animation: techFloatRight 4s ease-in-out infinite 0.2s, fadeInUp 0.8s ease-out 1.4s both;
+    animation: techFloatRight 4s ease-in-out infinite 0.2s, fadeInUp 0.4s ease-out 0.45s both;
 }
 
 .tech-3 {
     bottom: 20%;
     right: -30px;
-    animation: techFloatRight 4s ease-in-out infinite 0.4s, fadeInUp 0.8s ease-out 1.6s both;
+    animation: techFloatRight 4s ease-in-out infinite 0.4s, fadeInUp 0.4s ease-out 0.5s both;
 }
 
 .tech-4 {
     bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    animation: techFloatBottom 4s ease-in-out infinite 0.6s, fadeInUp 0.8s ease-out 1.8s both;
+    animation: techFloatBottom 4s ease-in-out infinite 0.6s, fadeInUp 0.4s ease-out 0.55s both;
 }
 
 .tech-5 {
     bottom: 20%;
     left: -30px;
-    animation: techFloatLeft 4s ease-in-out infinite 0.8s, fadeInUp 0.8s ease-out 2s both;
+    animation: techFloatLeft 4s ease-in-out infinite 0.8s, fadeInUp 0.4s ease-out 0.6s both;
 }
 
 .tech-6 {
     top: 20%;
     left: -30px;
-    animation: techFloatLeft 4s ease-in-out infinite 1s, fadeInUp 0.8s ease-out 2.2s both;
+    animation: techFloatLeft 4s ease-in-out infinite 1s, fadeInUp 0.4s ease-out 0.65s both;
 }
 
 .tech-7 {
@@ -181,7 +181,7 @@ html {
     width: 50px;
     height: 50px;
     margin-top: -100px;
-    animation: techFloatCenter 4s ease-in-out infinite 1.2s, fadeInUp 0.8s ease-out 2.4s both;
+    animation: techFloatCenter 4s ease-in-out infinite 1.2s, fadeInUp 0.4s ease-out 0.7s both;
 }
 
 .tech-7 .tech-icon {
@@ -263,16 +263,15 @@ html {
     font-weight: 800;
     margin-bottom: 0.5rem;
     opacity: 0;
-    animation: fadeInUp 0.8s ease-out 0.6s both;
+    animation: fadeInUp 0.45s ease-out 0.15s both;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .splash-subtitle {
     font-size: 1.5rem;
-    opacity: 0.9;
     margin-bottom: 3rem;
     opacity: 0;
-    animation: fadeInUp 0.8s ease-out 0.8s both;
+    animation: fadeInUp 0.45s ease-out 0.25s both;
     font-weight: 300;
     letter-spacing: 2px;
 }
@@ -292,8 +291,8 @@ html {
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 1s both;
+    opacity: 1;
+    animation: fadeInUp 0.45s ease-out 0.35s both;
     position: relative;
     overflow: hidden;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
@@ -576,7 +575,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
+    background:
         radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
     pointer-events: none;
@@ -596,10 +595,14 @@ nav {
     pointer-events: none;
 }
 
-/* Carrossel de destaques (fotos) — estilo hero com imagens em fundo */
 .hero.new-hero-layout.has-photo-carousel {
     background: #0f172a;
     animation: none;
+}
+
+.hero.new-hero-layout.has-photo-carousel::before,
+.hero.new-hero-layout.has-photo-carousel::after {
+    display: none;
 }
 
 .hero-bg-carousel {
@@ -607,6 +610,7 @@ nav {
     inset: 0;
     z-index: 0;
     overflow: hidden;
+    min-height: 100%;
 }
 
 .hero-bg-slide {
@@ -754,11 +758,10 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
     display: block;
-    opacity: 0;
-    transform: scale(0.8);
-    animation: profileIn 1s 0.3s forwards;
+    opacity: 1;
+    transform: none;
 }
 
 @keyframes profileIn {
@@ -1967,12 +1970,12 @@ footer p {
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .hero-flex .profile-image {
         width: 180px;
         height: 180px;
     }
-    
+
     .highlighted-name {
         font-size: 2.5rem;
     }
@@ -2141,16 +2144,15 @@ footer p {
    ADDITIONAL ANIMATIONS & EFFECTS
    ======================================== */
 
-/* Scroll reveal animations (hero #home fica sempre legível — evita texto duplicado / sobreposição) */
+/* Secções visíveis de imediato (mais rápido ao scroll) */
 section:not(#home) {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    opacity: 1;
+    transform: none;
 }
 
 section:not(#home).visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 
 #home.hero {
@@ -2169,13 +2171,8 @@ img {
 }
 
 img[loading="lazy"] {
-    opacity: 0;
-    transform: scale(0.95);
-}
-
-img[loading="lazy"].loaded {
     opacity: 1;
-    transform: scale(1);
+    transform: none;
 }
 
 /* Enhanced hover effects */
@@ -2199,7 +2196,6 @@ img[loading="lazy"].loaded {
     left: 100%;
 }
 
-/* Particle effect background (optional enhancement) */
 .hero.new-hero-layout {
     position: relative;
 }
@@ -2663,7 +2659,7 @@ img[loading="lazy"].loaded {
     position: absolute;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, 
+    background: radial-gradient(circle,
         rgba(99, 102, 241, 0.3),
         rgba(139, 92, 246, 0.2),
         transparent 70%
@@ -2680,7 +2676,7 @@ img[loading="lazy"].loaded {
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, 
+    background: radial-gradient(circle,
         rgba(236, 72, 153, 0.2),
         rgba(99, 102, 241, 0.15),
         transparent 70%
@@ -2692,7 +2688,6 @@ img[loading="lazy"].loaded {
     filter: blur(40px);
 }
 
-/* Sem orbes decorativos quando há carrossel de fotos */
 .hero.new-hero-layout.has-photo-carousel::before,
 .hero.new-hero-layout.has-photo-carousel::after {
     display: none;
@@ -2793,7 +2788,15 @@ img[loading="lazy"].loaded {
 }
 
 section.visible:not(#home) {
-    animation: slideInFromBottom 0.8s ease-out forwards;
+    animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 /* Glow Effect on Hover for All Interactive Elements */

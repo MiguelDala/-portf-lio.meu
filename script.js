@@ -23,19 +23,14 @@ if (hasEntered && splashScreen && mainContent) {
 
 // Função para mostrar o conteúdo principal (global para onclick)
 window.showMainContent = function showMainContent() {
-    console.log('showMainContent chamada');
-    
-    // Esconder splash screen
     if (splashScreen) {
         splashScreen.classList.add('hidden');
         splashScreen.style.display = 'none';
         splashScreen.style.visibility = 'hidden';
         splashScreen.style.opacity = '0';
         splashScreen.style.zIndex = '-1';
-        console.log('Splash screen escondida');
     }
-    
-    // Mostrar conteúdo principal
+
     if (mainContent) {
         mainContent.classList.remove('hidden');
         mainContent.style.opacity = '1';
@@ -45,46 +40,22 @@ window.showMainContent = function showMainContent() {
         mainContent.style.height = 'auto';
         mainContent.style.zIndex = '1';
         mainContent.style.width = '100%';
-        console.log('Conteúdo principal mostrado');
     }
-    
+
     sessionStorage.setItem('portfolioEntered', 'true');
-    
-    // Scroll suave para o topo
-    setTimeout(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }, 100);
-    
-    // Inicializar partículas após mostrar conteúdo
-    setTimeout(() => {
-        const particlesContainer = document.getElementById('floating-particles');
-        if (particlesContainer && !particlesContainer.hasChildNodes()) {
-            if (typeof createFloatingParticles === 'function') {
-                createFloatingParticles();
-            }
-        }
-    }, 500);
+    window.scrollTo(0, 0);
+
+    if (typeof initHeroPhotoCarousel === 'function') {
+        initHeroPhotoCarousel(true);
+    }
 };
 
 // Botão para entrar no portfólio
 if (enterButton) {
     enterButton.addEventListener('click', function(e) {
         e.preventDefault();
-        e.stopPropagation();
-        console.log('Botão clicado!');
         showMainContent();
     });
-    
-    // Também adicionar evento de mouse para garantir
-    enterButton.addEventListener('mousedown', function(e) {
-        e.preventDefault();
-        showMainContent();
-    });
-} else {
-    console.error('Botão enter-portfolio não encontrado!');
 }
 
 // Permitir pular splash screen com tecla ESC ou duplo clique na splash
@@ -98,28 +69,24 @@ if (splashScreen) {
     });
 }
 
-// Debug: Verificar se elementos existem
-console.log('Splash Screen:', splashScreen);
-console.log('Main Content:', mainContent);
-console.log('Enter Button:', enterButton);
+// Ícones da splash carregam depois do conteúdo principal (não bloqueiam)
+function loadDeferredImages(root) {
+    (root || document).querySelectorAll('img[data-src]:not([src])').forEach(img => {
+        img.src = img.dataset.src;
+    });
+}
 
-// Garantir que o botão seja clicável mesmo após animação
-setTimeout(() => {
-    if (enterButton) {
-        enterButton.style.pointerEvents = 'auto';
-        enterButton.style.cursor = 'pointer';
-        enterButton.style.opacity = '1';
-        console.log('Botão configurado e pronto para uso');
-    }
-}, 1200); // Após a animação do botão
+function loadDeferredIframes(root) {
+    (root || document).querySelectorAll('iframe[data-src]:not([src])').forEach(frame => {
+        frame.src = frame.dataset.src;
+    });
+}
 
-// Fallback: Se após 5 segundos ainda estiver na splash, mostrar conteúdo automaticamente
-setTimeout(() => {
-    if (splashScreen && !splashScreen.classList.contains('hidden')) {
-        console.log('Fallback: Mostrando conteúdo automaticamente após 5 segundos');
-        showMainContent();
-    }
-}, 5000);
+if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => loadDeferredImages(document.querySelector('.tech-orbits')), { timeout: 2500 });
+} else {
+    setTimeout(() => loadDeferredImages(document.querySelector('.tech-orbits')), 1500);
+}
 
 // Theme toggle functionality + persistence (via profile image click)
 const body = document.body;
@@ -144,21 +111,22 @@ if (hamburger && navLinks) {
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        if (navLinks) navLinks.classList.remove('active');
     });
 });
 
 // Back to top button functionality
 const backToTopButton = document.getElementById('back-to-top');
-// Moved to optimized scroll handler below
 
-backToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if (backToTopButton) {
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
-});
+}
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -173,41 +141,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add active class to nav links on scroll
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 60) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').substring(1) === current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Animate project cards on scroll with stagger effect
+// Animate project cards on scroll
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            setTimeout(() => {
             entry.target.classList.add('fade-in');
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0) scale(1)';
-            }, index * 100);
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0) scale(1)';
             observer.unobserve(entry.target);
         }
     });
@@ -249,6 +194,9 @@ const sectionObserver = new IntersectionObserver((entries, observer) => {
 }, { threshold: 0.15 });
 
 sections.forEach(section => {
+    if (section.id && section.id !== 'home') {
+        section.classList.add('visible');
+    }
     sectionObserver.observe(section);
 });
 
@@ -376,16 +324,6 @@ if (footerText) {
     footerText.innerHTML = footerText.innerHTML.replace(/\b20\d{2}\b|\b19\d{2}\b/, String(currentYear));
 }
 
-// Add parallax effect to hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero.new-hero-layout');
-    if (hero && scrolled < window.innerHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
-    }
-});
-
 // Add ripple effect to buttons
 document.querySelectorAll('.project-button, .contact-form button, .social-button').forEach(button => {
     button.addEventListener('click', function(e) {
@@ -427,153 +365,52 @@ let lastScroll = 0;
 const header = document.querySelector('.header');
 
 const optimizedScrollHandler = debounce(() => {
-    // Header scroll effect
     const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        header.classList.remove('scroll-up');
+
+    if (header) {
+        if (currentScroll <= 0) {
+            header.classList.remove('scroll-up');
+            lastScroll = currentScroll;
+        } else if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+            header.classList.remove('scroll-up');
+            header.classList.add('scroll-down');
+        } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+            header.classList.remove('scroll-down');
+            header.classList.add('scroll-up');
+        }
         lastScroll = currentScroll;
-        return;
     }
-    
-    if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
-        header.classList.remove('scroll-up');
-        header.classList.add('scroll-down');
-    } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
-        header.classList.remove('scroll-down');
-        header.classList.add('scroll-up');
+
+    if (backToTopButton) {
+        backToTopButton.style.display = currentScroll > 300 ? 'flex' : 'none';
     }
-    
-    lastScroll = currentScroll;
-    
-    // Back to top button
-    if (currentScroll > 300) {
-        backToTopButton.style.display = 'flex';
-    } else {
-        backToTopButton.style.display = 'none';
-    }
-}, 10);
 
-window.addEventListener('scroll', optimizedScrollHandler);
-
-// ========================================
-// FLOATING PARTICLES SYSTEM
-// ========================================
-function createFloatingParticles() {
-    const particlesContainer = document.getElementById('floating-particles');
-    if (!particlesContainer) return;
-    
-    const particleCount = 15;
-    const techIcons = [
-        'https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg',
-        'https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg',
-        'https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg',
-        'https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg',
-        'https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg',
-        'https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg'
-    ];
-    
-    // Create floating particles
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        const size = Math.random() * 8 + 4; // 4px to 12px
-        const startX = Math.random() * 100;
-        const startY = Math.random() * 100;
-        const duration = Math.random() * 20 + 15; // 15s to 35s
-        const delay = Math.random() * 5;
-        
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.left = startX + '%';
-        particle.style.top = startY + '%';
-        particle.style.animationDuration = duration + 's';
-        particle.style.animationDelay = delay + 's';
-        
-        particlesContainer.appendChild(particle);
-    }
-    
-    // Create floating tech icons in hero section
-    const floatingIconsContainer = document.querySelector('.floating-tech-icons');
-    if (floatingIconsContainer) {
-        techIcons.forEach((iconSrc, index) => {
-            const icon = document.createElement('img');
-            icon.className = 'floating-icon';
-            icon.src = iconSrc;
-            icon.alt = 'Tech Icon';
-            icon.style.animationDelay = (index * 2) + 's';
-            floatingIconsContainer.appendChild(icon);
-        });
-    }
-}
-
-// Initialize particles when main content is visible
-function initParticles() {
-    const mainContent = document.getElementById('main-content');
-    if (mainContent && !mainContent.classList.contains('hidden')) {
-        createFloatingParticles();
-    } else {
-        // Wait for splash screen to be hidden
-        const checkInterval = setInterval(() => {
-            const mainContent = document.getElementById('main-content');
-            if (mainContent && !mainContent.classList.contains('hidden')) {
-                createFloatingParticles();
-                clearInterval(checkInterval);
-            }
-        }, 100);
-    }
-}
-
-// Initialize on page load
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initParticles);
-} else {
-    initParticles();
-}
-
-// Reinitialize when entering portfolio (já está na função showMainContent)
-
-// ========================================
-// ENHANCED INTERACTIVE EFFECTS
-// ========================================
-
-// Add magnetic effect to cards
-document.querySelectorAll('.project-mosaic-item, .timeline-content, .featured-project').forEach(card => {
-    card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const moveX = (x - centerX) / 10;
-        const moveY = (y - centerY) / 10;
-        
-        this.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = '';
-    });
-});
-
-// Add glow effect on scroll for sections
-const sectionGlowObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.boxShadow = `
-                0 0 40px rgba(99, 102, 241, 0.2),
-                0 0 80px rgba(139, 92, 246, 0.1)
-            `;
+    let current = '';
+    document.querySelectorAll('section[id]').forEach(section => {
+        if (currentScroll >= section.offsetTop - 80) {
+            current = section.id;
         }
     });
-}, { threshold: 0.3 });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+}, 16);
 
-document.querySelectorAll('section').forEach(section => {
-    sectionGlowObserver.observe(section);
-});
+window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+
+// Iframe do projeto em destaque só carrega quando visível
+const lazyIframe = document.querySelector('.project-preview-iframe[data-src]');
+if (lazyIframe) {
+    const iframeObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                loadDeferredIframes(entry.target.parentElement);
+                obs.disconnect();
+            }
+        });
+    }, { rootMargin: '120px' });
+    iframeObserver.observe(lazyIframe);
+}
 
 // Enhanced typing effect with multiple texts
 const typingElement = document.querySelector('.typing-effect');
@@ -608,70 +445,34 @@ if (typingElement) {
         setTimeout(type, typeSpeed);
     }
     
-    // Start typing after hero animation
-    setTimeout(type, 1500);
+    setTimeout(type, 400);
 }
 
-// Add sparkle effect on click
-document.addEventListener('click', (e) => {
-    if (e.target.closest('.project-mosaic-item, .timeline-content, .social-button')) {
-        createSparkle(e.clientX, e.clientY);
-    }
-});
-
-function createSparkle(x, y) {
-    for (let i = 0; i < 6; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.style.position = 'fixed';
-        sparkle.style.left = x + 'px';
-        sparkle.style.top = y + 'px';
-        sparkle.style.width = '4px';
-        sparkle.style.height = '4px';
-        sparkle.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
-        sparkle.style.borderRadius = '50%';
-        sparkle.style.pointerEvents = 'none';
-        sparkle.style.zIndex = '10000';
-        sparkle.style.boxShadow = `0 0 10px hsl(${Math.random() * 360}, 70%, 60%)`;
-        
-        const angle = (Math.PI * 2 * i) / 6;
-        const distance = 30 + Math.random() * 20;
-        const duration = 0.6 + Math.random() * 0.4;
-        
-        sparkle.style.animation = `sparkleMove ${duration}s ease-out forwards`;
-        sparkle.style.setProperty('--end-x', (Math.cos(angle) * distance) + 'px');
-        sparkle.style.setProperty('--end-y', (Math.sin(angle) * distance) + 'px');
-        
-        document.body.appendChild(sparkle);
-        
-        setTimeout(() => sparkle.remove(), duration * 1000);
-    }
+function loadCarouselSlideImage(slide) {
+    const img = slide?.querySelector('img');
+    if (!img || !img.dataset.src || img.dataset.loaded === '1') return;
+    img.src = img.dataset.src;
+    img.dataset.loaded = '1';
 }
 
-// Add sparkle animation to CSS dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes sparkleMove {
-        to {
-            transform: translate(var(--end-x), var(--end-y)) scale(0);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// Carrossel automático de destaques no hero (fotos em assets/hero-highlight-*.png)
-function initHeroPhotoCarousel() {
+// Carrossel automático de destaques no hero
+function initHeroPhotoCarousel(restart) {
     const hero = document.querySelector('.hero.new-hero-layout.has-photo-carousel');
-    if (!hero || hero.dataset.carouselInit === '1') return;
-    hero.dataset.carouselInit = '1';
+    if (!hero) return;
 
     const slides = hero.querySelectorAll('.hero-bg-slide');
     const dots = hero.querySelectorAll('.hero-carousel-dot');
     if (!slides.length) return;
 
-    let index = 0;
+    if (hero._carouselTimer) {
+        clearInterval(hero._carouselTimer);
+        hero._carouselTimer = null;
+    }
+
+    let index = Array.from(slides).findIndex(s => s.classList.contains('is-active'));
+    if (index < 0) index = 0;
+
     const intervalMs = 3000;
-    let timer;
 
     function goTo(n) {
         slides[index].classList.remove('is-active');
@@ -680,6 +481,8 @@ function initHeroPhotoCarousel() {
             dots[index].setAttribute('aria-selected', 'false');
         }
         index = ((n % slides.length) + slides.length) % slides.length;
+        loadCarouselSlideImage(slides[index]);
+        loadCarouselSlideImage(slides[(index + 1) % slides.length]);
         slides[index].classList.add('is-active');
         if (dots[index]) {
             dots[index].classList.add('is-active');
@@ -692,30 +495,51 @@ function initHeroPhotoCarousel() {
     }
 
     function start() {
-        clearInterval(timer);
-        timer = setInterval(next, intervalMs);
+        if (hero._carouselTimer) clearInterval(hero._carouselTimer);
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduceMotion) {
+            hero._carouselTimer = setInterval(next, intervalMs);
+        }
     }
 
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            goTo(i);
+    if (hero.dataset.carouselListeners !== '1') {
+        hero.dataset.carouselListeners = '1';
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                goTo(i);
+                start();
+            });
+        });
+
+        hero.addEventListener('mouseenter', () => {
+            if (hero._carouselTimer) clearInterval(hero._carouselTimer);
+            hero._carouselTimer = null;
+        });
+
+        hero.addEventListener('mouseleave', () => {
             start();
         });
-    });
-
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reduceMotion) {
-        start();
     }
 
-    hero.addEventListener('mouseenter', () => clearInterval(timer));
-    hero.addEventListener('mouseleave', () => {
-        if (!reduceMotion) start();
-    });
+    loadCarouselSlideImage(slides[index]);
+    loadCarouselSlideImage(slides[(index + 1) % slides.length]);
+
+    if (restart || !hero._carouselTimer) {
+        start();
+    }
+}
+
+window.initHeroPhotoCarousel = initHeroPhotoCarousel;
+
+function bootHeroCarousel() {
+    const main = document.getElementById('main-content');
+    if (!main || main.classList.contains('hidden')) return;
+    initHeroPhotoCarousel(true);
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeroPhotoCarousel);
+    document.addEventListener('DOMContentLoaded', bootHeroCarousel);
 } else {
-    initHeroPhotoCarousel();
+    bootHeroCarousel();
 }

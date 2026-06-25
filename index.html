@@ -6,40 +6,42 @@
     <title>Miguel Dala - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/hero-highlight-ai-vscode.png" as="image">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 </head>
 <body>
     <!-- Splash Screen / Tela Inicial -->
     <div id="splash-screen" class="splash-screen">
         <div class="splash-content">
             <div class="splash-image-container">
-                <img src="assets/profile.png" alt="Miguel Dala" class="splash-image">
+                <img src="assets/profile.png" alt="Miguel Dala" class="splash-image" decoding="async">
                 <div class="splash-image-glow"></div>
                 
                 <!-- Tecnologias ao redor da foto -->
                 <div class="tech-orbits">
                     <div class="tech-bubble tech-1">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="C#" class="tech-icon">
+                        <img data-src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#" class="tech-icon" decoding="async">
                     </div>
                     <div class="tech-bubble tech-2">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" alt="GitHub" class="tech-icon">
+                        <img data-src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="tech-icon" decoding="async">
                     </div>
                     <div class="tech-bubble tech-3">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" class="tech-icon">
+                        <img data-src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" class="tech-icon" decoding="async">
                     </div>
                     <div class="tech-bubble tech-4">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" class="tech-icon">
+                        <img data-src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="tech-icon" decoding="async">
                     </div>
                     <div class="tech-bubble tech-5">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" class="tech-icon">
+                        <img data-src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="tech-icon" decoding="async">
                     </div>
                     <div class="tech-bubble tech-6">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" class="tech-icon">
+                        <img data-src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="tech-icon" decoding="async">
                     </div>
                     <div class="tech-bubble tech-7">
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" class="tech-icon">
+                        <img data-src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="tech-icon" decoding="async">
                     </div>
                 </div>
             </div>
@@ -79,20 +81,19 @@
     <main>
         <section id="home" class="hero new-hero-layout has-photo-carousel">
             <div class="hero-bg-carousel" aria-hidden="true">
-                <div class="hero-bg-slide is-active"><img src="assets/hero-highlight-ai-vscode.png" alt="Programação, VS Code e colaboração com IA"></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-4.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-5.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-6.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-7.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-8.png" alt=""></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-sqlite.png" alt="SQLite"></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-python-cron.png" alt="Python — batch job e cron"></div>
-                <div class="hero-bg-slide"><img src="assets/hero-highlight-workspace.png" alt="Ambiente de trabalho"></div>
+                <div class="hero-bg-slide is-active"><img src="assets/hero-highlight-ai-vscode.png" alt="Programação, VS Code e colaboração com IA" fetchpriority="high" decoding="async"></div>
+                <div class="hero-bg-slide"><img data-src="assets/hero-highlight-5.png" alt="" decoding="async"></div>
+                <div class="hero-bg-slide"><img data-src="assets/hero-highlight-6.png" alt="" decoding="async"></div>
+                <div class="hero-bg-slide"><img data-src="assets/hero-highlight-7.png" alt="" decoding="async"></div>
+                <div class="hero-bg-slide"><img data-src="assets/hero-highlight-8.png" alt="" decoding="async"></div>
+                <div class="hero-bg-slide"><img data-src="assets/hero-highlight-sqlite.png" alt="SQLite" decoding="async"></div>
+                <div class="hero-bg-slide"><img data-src="assets/hero-highlight-python-cron.png" alt="Python — batch job e cron" decoding="async"></div>
+                <div class="hero-bg-slide"><img data-src="assets/hero-highlight-workspace.png" alt="Ambiente de trabalho" decoding="async"></div>
             </div>
             <div class="hero-bg-carousel-shade" aria-hidden="true"></div>
             <div class="hero-flex">
                 <div class="profile-image">
-                    <img src="assets/profile.png" alt="Miguel Dala">
+                    <img src="assets/hero-portrait.png?v=2" alt="Miguel Dala" fetchpriority="high" decoding="async">
                 </div>
                 <div class="hero-content">
                     <h1 class="highlighted-name">Miguel Dala</h1>
@@ -106,10 +107,9 @@
                 <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 3"></button>
                 <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 4"></button>
                 <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 5"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 6"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 7 (SQLite)"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 8 (Python)"></button>
-                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 9 (workspace)"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 6 (SQLite)"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 7 (Python)"></button>
+                <button type="button" class="hero-carousel-dot" role="tab" aria-selected="false" aria-label="Destaque 8 (workspace)"></button>
             </div>
         </section>
 
@@ -199,7 +199,7 @@
                 <div class="featured-project-content">
                     <div class="project-preview-container">
                         <iframe 
-                            src="https://np-lyart.vercel.app/" 
+                            data-src="https://np-lyart.vercel.app/" 
                             class="project-preview-iframe"
                             title="Website UBI - Nuno Pombo"
                             loading="lazy"
@@ -250,7 +250,7 @@
             
             <div class="projects-mosaic">
                 <div class="project-mosaic-item">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C/C++">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C/C++" loading="lazy" decoding="async">
                     <div class="project-info">, 
                         <h3>Programação em C/C++</h3>
                         <p>Fundamentos da programação em C e C++.</p>
@@ -258,7 +258,7 @@
                     </div>
                 </div>
                 <div class="project-mosaic-item">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" loading="lazy" decoding="async">
                     <div class="project-info">
                         <h3>Princípios Metodológicos</h3>
                         <p>Metodologia Ágil e POO.</p>
@@ -266,7 +266,7 @@
                     </div>
                 </div>
                 <div class="project-mosaic-item">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Metodologias">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Metodologias" loading="lazy" decoding="async">
                     <div class="project-info">
                         <h3>Metodologias de Desenvolvimento de Software</h3>
                         <p>Cascata, Scrum, Kanban e XP.</p>
@@ -274,7 +274,7 @@
                     </div>
                 </div>
                 <div class="project-mosaic-item">
-                    <img src="https://th.bing.com/th/id/OIP.8x2R2EMnstRo8m53fPhl1gHaEK?w=300&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="IA e Quântica">
+                    <img src="https://th.bing.com/th/id/OIP.8x2R2EMnstRo8m53fPhl1gHaEK?w=300&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="IA e Quântica" loading="lazy" decoding="async">
                     <div class="project-info">
                         <h3>O Universo Digital - IA</h3>
                         <p>Computação quântica e inteligência artificial.</p>
@@ -282,7 +282,7 @@
                     </div>
                 </div>
                 <div class="project-mosaic-item">
-                    <img src="https://th.bing.com/th/id/OIP.bKD2jnMVZp7l8p-pO9vQawHaEK?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" alt="Scrum">
+                    <img src="https://th.bing.com/th/id/OIP.bKD2jnMVZp7l8p-pO9vQawHaEK?rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" alt="Scrum" loading="lazy" decoding="async">
                     <div class="project-info">
                         <h3>Projeto Scrum</h3>
                         <p>Guia completo sobre a metodologia Scrum.</p>
@@ -290,7 +290,7 @@
                     </div>
                 </div>
                 <div class="project-mosaic-item">
-                    <img src="https://th.bing.com/th/id/OIP.o9LInF51nRy2_t4VVGigCQHaFq?w=886&h=678&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" alt="Periféricos & Algoritmos">
+                    <img src="https://th.bing.com/th/id/OIP.o9LInF51nRy2_t4VVGigCQHaFq?w=886&h=678&rs=1&pid=ImgDetMain&cb=idpwebp2&o=7&rm=3" alt="Periféricos & Algoritmos" loading="lazy" decoding="async">
                     <div class="project-info">
                         <h3>Periféricos & Algoritmos</h3>
                         <p>Periféricos, algoritmos e módulos do curso.</p>
@@ -298,7 +298,7 @@
                     </div>
                 </div>
                 <div class="project-mosaic-item">
-                    <img src="https://www.founderjar.com/wp-content/uploads/2022/07/System-Software.jpeg" alt="Utilitários">
+                    <img src="https://www.founderjar.com/wp-content/uploads/2022/07/System-Software.jpeg" alt="Utilitários" loading="lazy" decoding="async">
                     <div class="project-info">
                         <h3>Utilitários</h3>
                         <p>Utilitários essenciais para sistemas computacionais.</p>
@@ -306,7 +306,7 @@
                     </div>
                 </div>
                 <div class="project-mosaic-item">
-                    <img src="https://www.udacity.com/blog/wp-content/uploads/2020/11/Hello-World_Blog-scaled.jpeg" alt="Hello World & Algoritmos">
+                    <img src="https://www.udacity.com/blog/wp-content/uploads/2020/11/Hello-World_Blog-scaled.jpeg" alt="Hello World & Algoritmos" loading="lazy" decoding="async">
                     <div class="project-info">
                         <h3>Hello World & Algoritmos</h3>
                         <p>Algoritmos, programação em C/C++ e módulos do curso.</p>
@@ -314,7 +314,7 @@
                     </div>
                 </div>
                 <div class="project-mosaic-item">
-                    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="SQL">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" loading="lazy" decoding="async">
                     <div class="project-info">
                         <h3>Fundamentos de SQL</h3>
                         <p>Guia completo sobre SQL, DDL, DML, DQL, DCL, TCL e JOINs.</p>
@@ -357,6 +357,6 @@
     </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
