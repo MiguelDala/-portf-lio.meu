@@ -9,6 +9,7 @@
     <link rel="preload" href="assets/hero-highlight-ai-vscode.png" as="image">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 </head>
@@ -73,6 +74,7 @@
                 <li><a href="#about">Sobre</a></li>
                 <li><a href="#skills">Habilidades</a></li>
                 <li><a href="#projects">Projetos</a></li>
+                <li><a href="#escola">Escola</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
         </nav>
@@ -324,6 +326,24 @@
             </div>
         </section>
 
+        <section id="escola" class="school-map-section" aria-label="Localização da escola">
+            <h2 class="section-title">Escola Profissional do Fundão</h2>
+            <p class="school-map-address">Rua Cidade de Salamanca, nº 1 · Fundão 6230-370</p>
+            <div class="school-map-stage">
+                <div class="school-map-3d">
+                    <div id="school-map" class="school-map-canvas" role="application" aria-label="Mapa satélite da Escola Profissional do Fundão"></div>
+                </div>
+            </div>
+            <a
+                class="school-map-open"
+                href="https://www.google.com/maps/search/?api=1&query=Escola+Profissional+do+Fundão,+Rua+Cidade+de+Salamanca,+6230-370+Fundão"
+                target="_blank"
+                rel="noopener noreferrer">
+                <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
+                Abrir no Google Maps (vista 3D)
+            </a>
+        </section>
+
         <section id="contact" class="contact">
             <h2 class="section-title">Contato</h2>
             <div class="contact-flex">
@@ -357,6 +377,7 @@
     </footer>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
     <script src="script.js" defer></script>
 </body>
 </html>

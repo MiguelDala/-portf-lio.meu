@@ -48,6 +48,10 @@ window.showMainContent = function showMainContent() {
     if (typeof initHeroPhotoCarousel === 'function') {
         initHeroPhotoCarousel(true);
     }
+
+    if (typeof initSchoolMap === 'function') {
+        initSchoolMap();
+    }
 };
 
 // Botão para entrar no portfólio
@@ -542,4 +546,71 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', bootHeroCarousel);
 } else {
     bootHeroCarousel();
+}
+
+const SCHOOL_COORDS = [40.1348606, -7.5036193];
+const SCHOOL_ZOOM = 18;
+
+function initSchoolMap() {
+    const container = document.getElementById('school-map');
+    if (!container || container.dataset.mapReady === '1') return;
+    if (typeof L === 'undefined') {
+        setTimeout(initSchoolMap, 120);
+        return;
+    }
+
+    const main = document.getElementById('main-content');
+    if (main && main.classList.contains('hidden')) return;
+
+    container.dataset.mapReady = '1';
+
+    const map = L.map(container, {
+        center: SCHOOL_COORDS,
+        zoom: SCHOOL_ZOOM,
+        scrollWheelZoom: false,
+        zoomControl: true
+    });
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics'
+    }).addTo(map);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        opacity: 0.65
+    }).addTo(map);
+
+    const markerIcon = L.divIcon({
+        className: 'school-map-pin',
+        html: '<span class="school-map-pin-dot"></span><span class="school-map-pin-label">EP Fundão</span>',
+        iconSize: [120, 48],
+        iconAnchor: [60, 44]
+    });
+
+    L.marker(SCHOOL_COORDS, { icon: markerIcon })
+        .addTo(map)
+        .bindPopup(
+            '<strong>Escola Profissional do Fundão</strong><br>Rua Cidade de Salamanca, nº 1<br>6230-370 Fundão, Portugal'
+        )
+        .openPopup();
+
+    container.addEventListener('mouseenter', () => map.scrollWheelZoom.enable());
+    container.addEventListener('mouseleave', () => map.scrollWheelZoom.disable());
+
+    setTimeout(() => map.invalidateSize(), 200);
+}
+
+window.initSchoolMap = initSchoolMap;
+
+function bootSchoolMap() {
+    const main = document.getElementById('main-content');
+    if (!main || main.classList.contains('hidden')) return;
+    initSchoolMap();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootSchoolMap);
+} else {
+    bootSchoolMap();
 }
