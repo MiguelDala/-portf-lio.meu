@@ -68,8 +68,8 @@ Adicionar filtros de projetos por tecnologia;
 Melhorar a otimização e a acessibilidade da aplicação.
 Autor
 
-Nome: [O Teu Nome]
-Curso: [Nome do Curso]
+Nome: Miguel Dala
+Curso: programação de infomática
 Área: Desenvolvimento Web / Programação
 Ano: 2026
 
